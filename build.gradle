@@ -1152,6 +1152,20 @@ project("spring-aspects") {
 	}
 }
 
+project("spring-learn") {
+	description = "Spring learn"
+
+	dependencies {
+		implementation(project(":spring-core")){
+			exclude group: 'commons-logging', module: 'commons-logging'
+		}
+		implementation("org.slf4j:jcl-over-slf4j:1.7.21")
+		implementation("ch.qos.logback:logback-classic:1.1.7")
+		implementation(files(project(":spring-core").cglibRepackJar))
+		implementation(project(":spring-beans"))
+	}
+}
+
 project("spring-framework-bom") {
 	description = "Spring Framework (Bill of Materials)"
 
@@ -1309,3 +1323,5 @@ def qualifyVersionIfNecessary(version) {
 	}
 	return version
 }
+
+
